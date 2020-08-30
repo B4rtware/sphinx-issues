@@ -82,6 +82,8 @@ class IssueRole(object):
     def make_node(self, name, issue_no, config, options=None):
         name_map = {"pr": "pull", "issue": "issues", "commit": "commit"}
         options = options or {}
+        if name == "commit":
+            options["classes"] = ["commit-reference"]
         repo_match = self.EXTERNAL_REPO_REGEX.match(issue_no)
         if repo_match:  # External repo
             username, repo, symbol, issue = repo_match.groups()
